@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+
+</p>
+
+<p>
+  <% if not current_user.average_rating.nil? %>
+  <%= @user.username%> has made <%=@user.average_rating%> ratings.
+      <% else %>
+      <%= @user.username%> has made 0 ratings.
+      <% end %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

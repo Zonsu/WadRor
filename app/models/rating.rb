@@ -1,7 +1,7 @@
 class Rating < ActiveRecord::Base
- belongs_to :beer
+  belongs_to :beer
 
- def to_s
+  def to_s
     "#{beer.name} #{score}"
   end
 end
