@@ -1,14 +1,22 @@
 Rails.application.routes.draw do
+  resources :memberships
+
+  resources :beer_clubs
+
   resources :users
+
+  get 'signup', to: 'users#new'
+  get 'signin', to: 'sessions#new'
+  delete 'signout', to: 'sessions#destroy'
+
+  resource :session, only: [:new, :create]
 
   resources :beers
 
   resources :breweries
 
   resources :ratings, only: [:index, :new, :create, :destroy]
-  #get 'ratings', to: 'ratings#index'
-  #get 'ratings/new', to:'ratings#new'
-  #post 'ratings', to: 'ratings#create'
+
 
   root 'breweries#index'
   # The priority is based upon order of creation: first created -> highest priority.
@@ -65,9 +73,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-  get 'signup', to: 'users#new'
-  resource :session, only: [:new, :create, :delete]
-  get 'signin', to: 'sessions#new'
-  delete 'signout', to: 'sessions#destroy'
 end
