@@ -21,6 +21,9 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'launchy'
+  gem 'simplecov', require: false
+  gem 'webmock'
+
 end
 
 gem 'bcrypt', '~> 3.1.7'
@@ -67,4 +70,9 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'rspec-its'
+
 gem 'rb-readline'
+
+gem 'httparty'
+

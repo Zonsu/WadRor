@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 include OwnTestHelper
 
 describe "User" do
@@ -19,7 +18,7 @@ describe "User" do
       sign_in(username:"Pekka", password:"wrong")
 
       expect(current_path).to eq(signin_path)
-      expect(page).to have_content 'username and password do not match'
+      expect(page).to have_content 'Username and/or password mismatch'
     end
   end
 

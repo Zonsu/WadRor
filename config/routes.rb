@@ -7,13 +7,21 @@ Rails.application.routes.draw do
 
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
+
+  get 'places', to: 'places#index'
+  post 'places', to:'places#search'
+
   delete 'signout', to: 'sessions#destroy'
 
-  resource :session, only: [:new, :create]
+  resource :session, only: [:new, :create, :delete]
 
   resources :beers
 
   resources :breweries
+
+  resources :places, only:[:index, :show]
+
+  post 'places', to:'places#search'
 
   resources :ratings, only: [:index, :new, :create, :destroy]
 
