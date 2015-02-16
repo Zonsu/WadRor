@@ -7,6 +7,9 @@ class Beer < ActiveRecord::Base
 
   validates :name, presence: true
   validates :style, presence: true
+  #validates :brewery_id, presence: true
+  belongs_to :style
+
 
   def to_s
     "#{name} #{brewery.name}"

@@ -20,7 +20,7 @@ module OwnTestHelper
   end
 
   def create_beers_with_ratings_and_brewery(*scores, brewery, user)
-    create_beers(scores, "Pale Ale", brewery, user)
+    create_beers(scores, Style.new(style:"Pale Ale"), brewery, user)
   end
 
   def create_beers_with_ratings_and_style(*scores, style, user)

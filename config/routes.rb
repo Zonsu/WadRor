@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :styles
+
   resources :memberships
 
   resources :beer_clubs
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   resources :beers
 
   resources :breweries
+  resources :styles
 
   resources :places, only:[:index, :show]
 
