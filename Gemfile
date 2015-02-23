@@ -26,6 +26,8 @@ group :test do
 
 end
 
+gem 'rails_12factor', group: :production
+
 gem 'bcrypt', '~> 3.1.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
