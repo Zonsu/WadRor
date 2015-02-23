@@ -2,35 +2,46 @@
 
 <h2>
   <%= @user.username %>
+  <% if @user.banned  %>
+      <span class="label label-info">Frozen</span>
+      <%end%>
 </h2>
 
 <% if @user.ratings.empty? %>
-  <p>has not yet rated any beers</p>
+    <p>has not yet rated any beers</p>
 <% else %>
-  <p>
-    Has made <%= pluralize(@user.ratings.count, 'rating') %>, average <%= @user.average_rating %>
-  </p>
+    <p>
+      Has made <%= pluralize(@user.ratings.count, 'rating') %>, average <%= @user.average_rating %>
+    </p>
 <% end %>
 
 <% if @user.beer_clubs.any? %>
-  member of
-  <% @user.beer_clubs.each do |club| %>
-      <%= link_to club.name, club %>
-  <% end %>
+    member of
+    <% @user.beer_clubs.each do |club| %>
+        <%= link_to club.name, club %>
+    <% end %>
 <% end %>
 
 <ul>
   <% @user.ratings.each do |rating| %>
-    <li>
-      <%= rating %>
-      <% if @user == current_user %>
-        <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-    </li>
+      <li>
+        <%= rating %>
+        <% if @user == current_user %>
+            <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </li>
   <% end %>
 </ul>
+<p>
+
+  <% status = "Reactivate" %>
+  <% status= "Freeze" unless @user.banned%>
+
+  <%=link_to "#{status} account", toggle_ban_user_path(@user.id), method: :post, class: "btn btn-warning" if current_user.admin and current_user.id != @user.id%>
+
+</p>
 
 <% if @user == current_user %>
-  <%= link_to 'Change password', edit_user_path(@user) %>
-  <%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure?' } %></
+    <%= link_to 'Change password', edit_user_path(@user) %>
+    <%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure?' } %></
 <% end %>

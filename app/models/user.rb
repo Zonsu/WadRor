@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :beer_clubs, through: :memberships
 
   validates :username, uniqueness: true,
-                       length: { in: 3..15 }
+            length: { in: 3..15 }
 
   validates :password, length: { minimum: 4 }
 
@@ -50,5 +50,10 @@ class User < ActiveRecord::Base
   def brewery_average(brewery)
     ratings_of_brewery = ratings.select{ |r| r.beer.brewery==brewery }
     ratings_of_brewery.inject(0.0){ |sum, r| sum+r.score}/ratings_of_brewery.count
+  end
+
+  def self.top(n)
+    most_ratings = User.all.sort_by{ |b| -(b.ratings.count) }
+    most_ratings.take(n)
   end
 end

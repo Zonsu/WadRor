@@ -1,6 +1,6 @@
 <h1>Listing users</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Username</th>
@@ -11,6 +11,9 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.username, user %></td>
+        <td><% if user.banned  %>
+              <span class="label label-info">Frozen</span>
+          <%end%></td>
       </tr>
     <% end %>
   </tbody>

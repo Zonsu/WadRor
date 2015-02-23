@@ -1,11 +1,74 @@
-<h2>List of ratings</h2>
+<div class="row">
+  <div class="col-md-12">
 
-Total of <%= @ratings.count %> ratings given
+    <div class="row">
+      <div class="col-md-12">
+        <h2>List of ratings</h2>
+        Total of <%= @ratings.count %> ratings given
+      </div>
+    </div>
 
-<ul>
-  <% @ratings.each do |rating| %>
-    <li> <%= rating %> <%= link_to rating.user.username, rating.user %> </li>
-  <% end %>
-</ul>
+    <div class="row">
+      <div class="col-md-4">
+        <h3>
+          Recent Ratings
+        </h3>
+        <ul>
+          <% @ratings.recent(5).each do |rating| %>
+              <li> <%= rating %> by <%= link_to rating.user.username, rating.user %> </li>
+          <% end %>
+        </ul>
+      </div>
 
-<%= link_to 'New Rating', new_rating_path if current_user %>
+      <div class="col-md-4">
+        <h3>
+          Top 3 Contributors
+        </h3>
+        <ul>
+          <% @top_users.each do |contributor|%>
+              <li> <%= contributor.username%> <%= contributor.ratings.count %></li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-4">
+        <h3>
+          Top 3 Rated Beers
+        </h3>
+        <ul>
+          <% @top_beers.each do |b|%>
+              <li> <%=b.name%> <%= round(b.average_rating)   %></li>
+          <%end%>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <h3>
+          Top 3 Rated Styles
+        </h3>
+        <ul>
+          <% @top_styles.each do |style|%>
+              <li> <%=style.style%> <%= round(style.average_rating)   %></li>
+          <%end%>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h3>
+          Top 3 Rated Breweries
+        </h3>
+        <ul>
+          <% @top_breweries.each do |b|%>
+              <li> <%=b.name%> <%= round(b.average_rating)   %></li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+
+
+
+    <%= link_to 'New Rating', new_rating_path,  class:'btn btn-default' if current_user %>
+  </div>
+</div>

@@ -10,28 +10,30 @@
 
 <ul>
   <% @beer_club.members.each do |member| %>
-    <li>
-      <%= link_to member.username, member %>
-    </li>
+      <li>
+        <%= link_to member.username, member %>
+      </li>
   <% end %>
 
 </ul>
 
 
+<% if current_user %>
+     <% if not current_user.beer_clubs.include?(@beer_club) %>
 
-<% if not current_user.beer_clubs.include?(@beer_club) %>
+        <%= form_for(@membership) do |f| %>
+            <%= f.hidden_field :beer_club_id %>
+            <%= f.submit class:'btn btn-default', value:"join the club" %>
+        <% end %>
 
-    <%= form_for(@membership) do |f| %>
-        <%= f.hidden_field :beer_club_id %>
-        <%= f.submit value:"join the club" %>
+    <%else%>
+
+        <%= form_for(@membership, method: "delete") do |f| %>
+            <%= f.hidden_field :beer_club_id %>
+            <%= f.submit class:'btn btn-warning', value: "end the membership" %>
+        <% end %>
     <% end %>
+<%end%>
+<br>
 
-<%else%>
-    <%= form_for(@membership, method: "delete") do |f| %>
-        <%= f.hidden_field :beer_club_id %>
-        <%= f.submit value: "end the membership" %>
-    <% end %>
-<% end %>
-
-
-<%= link_to 'Edit', edit_beer_club_path(@beer_club) if current_user %>
+<%= edit_and_destroy_buttons(@beer_club) %>

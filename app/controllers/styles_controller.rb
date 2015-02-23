@@ -1,5 +1,6 @@
 class StylesController < ApplicationController
   before_action :set_style, only: [:show, :edit, :update, :destroy]
+  before_action :is_admin, only: [:destroy]
 
   # GET /styles
   # GET /styles.json
@@ -60,6 +61,10 @@ class StylesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def is_admin
+    redirect_to user_path, notice:'you no admin fool' unless current_user.admin
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
