@@ -11,7 +11,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.username, user %></td>
-        <td><% if user.banned  %>
+        <td><% if user.banned and current_user and current_user.admin %>
               <span class="label label-info">Frozen</span>
           <%end%></td>
       </tr>
