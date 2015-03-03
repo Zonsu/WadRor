@@ -37,7 +37,7 @@
   <% status = "Reactivate" %>
   <% status= "Freeze" unless @user.banned%>
 
-  <%=link_to "#{status} account", toggle_ban_user_path(@user.id), method: :post, class: "btn btn-warning" if current_user and current_user.admin and current_user.id != @user.id%>
+  <%=link_to "#{status} account", toggle_ban_user_path(@user.id), method: :post, class: "btn btn-warning" if current_user.admin and current_user.id != @user.id%>
 
 </p>
 

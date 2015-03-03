@@ -26,7 +26,6 @@ group :test do
 
 end
 
-
 gem 'bcrypt', '~> 3.1.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -45,6 +44,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
+
+gem 'selenium-webdriver'
+
+gem 'database_cleaner'
+
+gem 'rack-mini-profiler'
 
 group :development, :test do
   gem "better_errors"
@@ -78,8 +83,12 @@ gem 'rb-readline'
 gem 'httparty'
 
 gem 'bootstrap-sass'
+
+gem 'jquery-turbolinks'
+
 group :development do
   gem 'rails_layout'
+
+
 end
-ruby '2.2.0'
 
