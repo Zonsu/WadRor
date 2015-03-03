@@ -1,4 +1,4 @@
 
 Palvelinohjelmointi: Ruby on Rails 2015
 
-Heroku: https://mysterious-wave-5673.herokuapp.com/
+Heroku: https://frozen-wave-2768.herokuapp.com/
